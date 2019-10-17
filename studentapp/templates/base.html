@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }} - Student Platform</title>
+</head>
+<body>
+    <di>
+        <a href="{{ url_for('index') }}">Home</a>
+        {% if current_user.is_anonymous %}
+        <a href="{{ url_for('login') }}">Login</a>
+        {% else %}
+        <a href="">Add Student</a>
+        <a href="{{ url_for('logout') }}">Logout</a>
+        {% endif %}
+    </di>
+    <hr />
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+                <i>{{ message }}</i>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+    {% block content %} {% endblock %}
+</body>
+</html>
